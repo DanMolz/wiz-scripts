@@ -2,6 +2,7 @@
 
 
 ## WizCLI ASCI Table Summary
+```
 ubuntu:~$ python3 wiz-table-summary.py "$(./wizcli docker scan -i wizio.azurecr.io/sensor:v1 -f json)"
            _            _ _
  __      _(_)____   ___| (_)
@@ -32,3 +33,4 @@ LOW Count: 7
 
 Wiz Report URL:
 "https://app.wiz.io/reports/cicd-scans#~(cicd_scan~'00d51330-72d1-4ea2-b197-8f7eeb6c5442)"
+```
