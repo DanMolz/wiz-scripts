@@ -15,6 +15,7 @@ def print_vulnerability_summary(severity_totals):
             "HIGH": Fore.YELLOW,
             "MEDIUM": Fore.CYAN,
             "LOW": Fore.GREEN,
+            "INFORMATIONAL": Fore.MAGENTA,
         }.get(severity, Fore.WHITE)
         print(f"{severity_color}{severity} Count: {count}{Style.RESET_ALL}")
 
@@ -71,6 +72,7 @@ for index, package in enumerate(os_packages):
             "HIGH": Fore.YELLOW,
             "MEDIUM": Fore.CYAN,
             "LOW": Fore.GREEN,
+            "INFORMATIONAL": Fore.MAGENTA,
         }.get(vulnerability['severity'], Fore.WHITE)
 
         fixed_version = vulnerability.get('fixedVersion', 'N/A')
@@ -85,9 +87,10 @@ for index, package in enumerate(os_packages):
 
 print(table)
 
-severity_totals = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
+severity_totals = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0, "INFORMATIONAL": 0}
 for package in os_packages:
     for vulnerability in package['vulnerabilities']:
+      if vulnerability['severity'] in severity_totals:
         severity_totals[vulnerability['severity']] += 1
 
 print_vulnerability_summary(severity_totals)
